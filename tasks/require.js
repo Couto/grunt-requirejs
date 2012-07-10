@@ -23,9 +23,9 @@ module.exports = function (grunt) {
   var isArray = utils._.isArray;
   var isFunction = utils._.isFunction;
   var clone = utils._.clone;
-  
+
   // lib dependencies
-  var rjs = require('requirejs'); 
+  var rjs = require('requirejs');
 //  var $ = require('jQuery');
   var fs = require('fs');
 
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
             config: typeof chgConfig === 'undefined' ? config : chgConfig,
             done: done,
             cb: cb
-        });      
+        });
     };
   };
 
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
       done: done,
       cb: optimize(rqConfig, done, replaceAlmond(rqConfig, done))
     });
-    
+
     return done;
   });
 
@@ -84,7 +84,7 @@ module.exports = function (grunt) {
 
   // helper to execute requirejs optimizer function
   grunt.registerHelper('optimize', function (options) {
-    // call rjs optimizer 
+    // call rjs optimizer
     rjs.optimize(options.config, function (result) {
       // check if verbose flag is set, then log result
       grunt.verbose.ok(result);
@@ -165,7 +165,7 @@ module.exports = function (grunt) {
 
     } else {
 
-      // check for callback, else mark as done      
+      // check for callback, else mark as done
       if (isFunction(options.cb)) {
         options.cb();
       } else {
@@ -181,7 +181,7 @@ module.exports = function (grunt) {
 
     // check if we should inline almond
     if (options.config.almond === true) {
-        
+
         // log almond including
         log.ok('Including almond.js');
 
@@ -202,7 +202,7 @@ module.exports = function (grunt) {
             configClone.modules[idx].include = ['almond'];
           }
 
-          // check for callback, else mark as done           
+          // check for callback, else mark as done
           if (isFunction(options.cb)) {
             options.cb(configClone);
           } else {
@@ -232,7 +232,7 @@ module.exports = function (grunt) {
     // output info msg
     grunt.log.writeln(message);
 
-    // return traced informations 
+    // return traced informations
     return {gzipSize: gzipSize, module: module, fileSize: fileSize, message: message};
   });
 
